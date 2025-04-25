@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% capture styles %}
+      {% include main.scss %}
+    {% endcapture %}
+    <style>{{ styles | scssify }}</style>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="/feed.xml" >
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header{% if page.url == '/' %} class="index"{% endif %}>
+        <h1{% if page.url != '/' %} class="small"{% endif %}><a href="/">{{ site.name }}</a></h1>
+      </header>
+
+      <div class="content">
+        {{ content }}
+      </div>
+
+      {% assign now = 'now' | date: '%Y' %}
+
+      {% if site.posts.size > 0 %}
+      {% assign posts = site.posts | sort: 'date' %}
+      {% assign start_year = posts[0].date | date: "%Y" %}
+      {% else %}
+      {% assign start_year = now %}
+      {% endif %}
+      
+      {% if start_year == now %}
+      {% assign copyright_date = start_year %}
+      {% else %}
+      {% assign copyright_date = '–' | prepend: start_year | append: now %}
+      {% endif %}
+
+      <footer>
+        <ul>
+          <li>{{ copyright_date }}</li><!--
+          --><li><a href="/feed.xml">RSS</a></li><!--
+          -->{% for item in site.footer %}{% if item.url != nil and item.display != nil %}<li><a href="{{ item.url }}">{{ item.display }}</a></li>{% endif %}{% endfor %}
+        </ul>
+      </footer>
+    </div>
+
+    <script type="application/javascript">
+      {% include main.js %}
+    </script>
+  </body>
+</html>

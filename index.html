@@ -1,0 +1,16 @@
+---
+layout: default
+index: 1
+---
+
+{% if site.posts.size > 0 %}
+<ul class="index">
+  {% for post in site.posts %}
+  <li{% if post.fav %} class="fav"{% endif %}><a data-date="{{ post.date | date_to_string }}" href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<div>no posts, yet</div>
+
+{% endif %}
+<div class="nores">no results found</div>

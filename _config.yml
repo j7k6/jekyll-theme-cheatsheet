@@ -1,0 +1,12 @@
+name: My Cheatsheet
+url: https://localhost:4000
+lang: en
+# footer:
+#  - contact:
+#    url: https://github.com/j7k6
+#    display: GitHub
+base: /
+permalink: /:title/
+encoding: utf-8
+sass:
+  style: compressed
