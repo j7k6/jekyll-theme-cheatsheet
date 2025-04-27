@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}</title>
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% capture styles %}
       {% include main.scss %}
     {% endcapture %}
     <style>{{ styles | scssify }}</style>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="/feed.xml" >
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml" >
   </head>
 
   <body>
     <div class="wrapper">
       <header{% if page.url == '/' %} class="index"{% endif %}>
-        <h1{% if page.url != '/' %} class="small"{% endif %}><a href="/">{{ site.name }}</a></h1>
+        <h1{% if page.url != '/' %} class="small"{% endif %}><a href="/">{{ site.title }}</a></h1>
       </header>
 
       <div class="content">
